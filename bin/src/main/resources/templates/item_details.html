@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="ISO-8859-1">
+    <title>Item Details</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+  </head>
+  <body class="container text-center">
+  	<header>
+  	  <h1 th:text="${product.name}"></h1>
+  	</header>
+  	<main>
+  	  <br>
+  	  <p style="display:inline">Price: </p><p style="display:inline" th:text="${product.price}"></p>
+  	  <br>
+  	  <br>
+  	  <p style="display:inline">Quantity: </p><p style="display:inline" th:text="${product.quantity}"></p>
+  	  <br>
+  	  <br>
+  	  <br>
+  	  <p>Description:</p><p th:text="${product.description}"></p>
+  	  <hr>
+  	  <form action="#" th:action="@{/buy/{name}(name = ${product.name})}" method="POST" th:object="${boughtQuantity}">
+  	  	<label for="bought-quantity">How much do you wish to buy?</label>
+    	<input type="number" step="1" value="1" min="1" id="bought-quantity" th:field="*{quantity}">
+    	<button type="submit">Add to cart</button>
+  	  </form>
+  	  <div th:if="${errorMessage}">
+        <b th:text="${errorMessage}"></b>
+	  </div>
+  	</main>
+  </body>
+</html>

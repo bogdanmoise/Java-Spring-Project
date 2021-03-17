@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Start Page</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body class="container text-center">
+  <header>
+    <h1 class="top-header">Welcome to the Start Page!!!</h1>
+    <p class="top-message">Please log-in into your account or create a new one</p>
+  </header>
+  <main>
+  	<section class="home-links">
+  	  <p class="start-button-info">Shop's Home Page</p>
+  	  <p class="login-button"><a th:href="@{/login}">Enter the shop</a></h3>
+  	  <p class="start-button-info">Don't have an account?</p>
+  	  <p class="register-button"><a th:href="@{/register}">Register</a></p>
+  	</section>
+  </main>
+</body>
+</html>

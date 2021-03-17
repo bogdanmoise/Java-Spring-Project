@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Register Page</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div align="center">
+        <h1>Edit Product</h1>
+        <br />
+        <form action="#" th:action="@{/save}" method="POST" th:object="${product}">
+ 
+            <table border="0" cellpadding="10">
+                <tr style="visibility: hidden">             
+                    <td>ID:</td>
+                    <td >
+                       <input type="text" th:field="${product.id}" />
+                    </td>
+                </tr>        
+                <tr>             
+                    <td>Name:</td>
+                    <td>
+                        <input type="text" th:field="${product.name}" />
+                    </td>
+                </tr>
+                 <tr>             
+                    <td>Quantity:</td>
+                    <td>
+                        <input type="number" step="1" th:field="${product.quantity}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td><input type="number" step="0.01" th:field="${product.price}" /></td>
+                </tr>  
+                <tr>
+                    <td>Description</td>
+                    <td><textarea rows="3" cols="40" th:field="${product.description}" ></textarea></td>
+                </tr>                           
+            </table>
+            <button type="submit" class="form-button">Edit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Home Page</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body class="container text-center">
+  <header>
+    <h1 th:text="${welcomeMessage}"></h1>
+    <p><a th:href="@{/logout}">Logout</a></p>
+    <p class="top-message">Feel free to browse our items<p>
+  </header>
+  <main>
+    <h2>Product List</h2>
+    <br>
+    <div sec:authorize="hasAuthority('ADMIN')">
+    	<p><a th:href="@{/additem}">Create new product</a></p>
+    </div>
+    <br>
+    <p><a th:href="@{/cart}">View cart</a></p>
+    <br>
+    <table border="1" cellpadding="5" class="container text-center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Details</th>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                	<th>Actions</th>
+                </div>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.name}">Name</td>
+                <td th:text="${product.quantity}">Quantity</td>
+                <td th:text="${product.price}">Price</td>
+                <td>
+                  <p><a th:href="@{/details/{name}(name =${product.name})}">Item details</a></p>
+                </td>
+				<div sec:authorize="hasAuthority('ADMIN')">
+					<td>
+						<p><a th:href="@{/edit/{name}(name =${product.name})}">Edit</a></p>
+						<p><a th:href="@{/delete/{name}(name =${product.name})}">Delete</a></p>
+					</td>
+				</div>
+            </tr>
+        </tbody>
+    </table>   	
+  </main>
+</body>
+</html>

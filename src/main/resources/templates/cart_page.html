@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Home Page</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body class="container text-center">
+  <header>
+    <h1 th:text="${welcomeMessage}"></h1>
+  </header>
+  <main>
+    <h2>Your products</h2>
+    <br>
+    <br>
+    <table border="1" cellpadding="5" class="container text-center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Item description</th>
+                <th>Remove item</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.name}">Name</td>
+                <td th:text="${product.quantity}">Quantity</td>
+                <td th:text="${product.price}">Price</td>
+				<td th:text="${product.description}">Price</td>
+				<td>
+                 <form th:action="@{/deleteItem/{name}(name =${product.name})}" th:object="${deletedProduct}" method="post">
+                        <input type="hidden" name="id" th:value="${product.id}">
+                     	<input type="hidden" name="name" th:value="${product.name}">
+                     	<input type="hidden" name="quantity" th:value="${product.quantity}">
+                     	<input type="hidden" name="price" th:value="${product.price}">
+                     	<input type="hidden" name="description" th:value="${product.description}">
+                    <button type="submit">Delete</button>
+                 </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>  
+    <br>
+    <br>
+    <p align = "center" th:text= " ${'Total de platit: ' + sum}"></p>	
+    <br>
+    <br>
+    <br>
+    <br>
+    <p align = "right"><a th:href="@{/home}">Return to main menu</a></p>
+    <sec:session-management invalid-session-url="/login">
+        <sec:concurrency-control expired-url="/login" />
+	</sec:session-management>
+  </main>
+</body>
+</html>

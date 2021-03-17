@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Log-in Page</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body class="container text-center">
+  <header>
+    <h1 class="top-header">Please Log into your account</h1>
+  </header>
+  <main>
+    <form th:action="@{/login}" method="POST">
+  	    <section class="form-section">
+  	      <label class="form-label" for="username">Username</label>
+    	  <input type="text" id="username" name="username" required>
+  	    </section>
+  	    <section class="form-section">
+  	      <label class="form-label" for="password">Password</label>
+    	  <input type="password" id="password" name="password" required>
+  	    </section>
+  	    <button type="submit" class="form-button">Log-in</button>
+  	  </form>
+  	  <div class="alert alert-error" th:if="${param.error}">
+  	    <b>Invalid username and password, please try again!</b>
+      </div>
+  </main>
+</body>
+</html>
